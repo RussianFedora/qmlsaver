@@ -1,26 +1,41 @@
+%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+%global gitcommit a665e9b
+%global date 20100905
+%global realver 0.1
+#https://github.com/proDOOMman/qmlsaver/blob/master/debian/changelog
+
+
 Summary:    Screensaver with modules written in Qt4/QML
+Summary(ru):   Хранитель экрана с модулями написанными на Qt4/QML
 Name:       qmlsaver
 Group:      Amusements/Graphics
 URL:        https://github.com/proDOOMman/qmlsaver
-Version:    0.1
+Version:    %{realver}
 Release:    1%{?dist}.R
-
 License:    GPLv2
-Source:     proDOOMman-qmlsaver-a665e9b.tar.gz
+Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit}
+Source100:  README.RFRemix
 Patch0:     qmlsaver-0.1-1.fc16.patch
 
 %description
-The qmlsaver package contains digital clock screensaver for Gnome/KDE
+The qmlsaver package contains digital clock screensaver for Gnome/KDE 
 written in Qt4/QML.
 Qmlsaver may be used as module for xscreensaver.
 
+
+%description -l ru
+Этот RPM qmlsaver содержит в себе хранитель экрана типа цифровые часы 
+для Gnome/KDE написаный на Qt4/QML.
+Может быть использован как модуль для xscreensaver.
+
 %prep
-%setup -q -n proDOOMman-qmlsaver-a665e9b
+%setup -q -n proDOOMman-%{name}-%{gitcommit}
 %patch0 -p1 -b .fc16
 
 %build
 qmake-qt4
 make %{?_smp_mflags}
+cp %{SOURCE100} .
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
@@ -40,9 +55,11 @@ cp qmlsaver.xml ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/config
 %{_datadir}/applications/screensavers/qmlsaver*
 %{_libexecdir}/xscreensaver/qmlsaver*
 %{_datadir}/xscreensaver/config/qmlsaver*
+%doc README.RFRemix
+
 
 %changelog
-* Wed Dec 28 2011 Yaroslav Cherny <pacifictype@gmail.com> - 0.1-1.R
+* Wed Dec 30 2011 Yaroslav Cherny <pacifictype@gmail.com> - 0.1-1.R
 - SPEC file updated due to be inline with RFRemix repositary requirements
 
 * Sat Dec 25 2011 Yaroslav Cherny <pacifictype@gmail.com> - 0.1-1
