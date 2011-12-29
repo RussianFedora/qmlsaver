@@ -54,15 +54,15 @@ cp qmlsaver-xscreensaverhack.conf ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/hack
 
 
 %post
-if [ -f /usr/bin/update-xscreensaver-hacks ]; then
-    /usr/bin/update-xscreensaver-hacks
+if [ -f %{_sbindir}/update-xscreensaver-hacks ]; then
+    %{_sbindir}/update-xscreensaver-hacks
 fi
 
 %postun
 #rm -rf ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/hacks.conf.d/qmlsaver-xscreensaverhack.conf
 
-if [ -f /usr/bin/update-xscreensaver-hacks ]; then
-    /usr/bin/update-xscreensaver-hacks
+if [ -f %{_sbindir}/update-xscreensaver-hacks ]; then
+    %{_sbindir}/update-xscreensaver-hacks
 fi
 
 
@@ -78,6 +78,9 @@ fi
 
 
 %changelog
+* Wed Dec 31 2011 Yaroslav Cherny <pacifictype@gmail.com> - 0.1-1.R
+- Integration with xscreensaver update script
+
 * Wed Dec 30 2011 Yaroslav Cherny <pacifictype@gmail.com> - 0.1-1.R
 - SPEC file updated due to be inline with RFRemix repositary requirements
 
