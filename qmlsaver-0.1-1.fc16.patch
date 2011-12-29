@@ -58,7 +58,7 @@ diff -uNr proDOOMman-qmlsaver-a665e9b.orig/qmlsaver.xml proDOOMman-qmlsaver-a665
 +
 +<screensaver name="qmlsaver" _label="QMLsaver">
 +
-+  <command arg=" -root"/>
++  <command arg="-root"/>
 +
 +  <xscreensaver-text />
 +

@@ -14,6 +14,7 @@ Version:    %{realver}
 Release:    1%{?dist}.R
 License:    GPLv2
 Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit}
+Source99:   qmlsaver-xcreensaverhack.conf
 Source100:  README.RFRemix
 Patch0:     qmlsaver-0.1-1.fc16.patch
 
@@ -31,6 +32,7 @@ Qmlsaver may be used as module for xscreensaver.
 %prep
 %setup -q -n proDOOMman-%{name}-%{gitcommit}
 %patch0 -p1 -b .fc16
+cp %{SOURCE99} .
 
 %build
 qmake-qt4
@@ -47,6 +49,22 @@ mkdir -p ${RPM_BUILD_ROOT}%{_libexecdir}/xscreensaver
 cp qmlsaver ${RPM_BUILD_ROOT}%{_libexecdir}/xscreensaver
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/config
 cp qmlsaver.xml ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/config
+mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/hacks.conf.d
+cp qmlsaver-xscreensaverhack.conf ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/hacks.conf.d
+
+
+%post
+if [ -f /usr/bin/update-xscreensaver-hacks ]; then
+    /usr/bin/update-xscreensaver-hacks
+fi
+
+%postun
+#rm -rf ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/hacks.conf.d/qmlsaver-xscreensaverhack.conf
+
+if [ -f /usr/bin/update-xscreensaver-hacks ]; then
+    /usr/bin/update-xscreensaver-hacks
+fi
+
 
 %files
 %defattr(-,root,root)
@@ -55,6 +73,7 @@ cp qmlsaver.xml ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/config
 %{_datadir}/applications/screensavers/qmlsaver*
 %{_libexecdir}/xscreensaver/qmlsaver*
 %{_datadir}/xscreensaver/config/qmlsaver*
+%{_datadir}/xscreensaver/hacks.conf.d/qmlsaver*
 %doc README.RFRemix
 
 
