@@ -6,17 +6,19 @@
 #https://github.com/proDOOMman/qmlsaver/blob/master/debian/changelog
 
 
-Summary:    Screensaver with modules written in Qt4/QML
-Summary(ru):   Хранитель экрана с модулями написанными на Qt4/QML
-Name:       qmlsaver
-Group:      Amusements/Graphics
-URL:        https://github.com/proDOOMman/qmlsaver
-Version:    %{realver}
-Release:    2%{?dist}
-License:    GPLv2
-Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit_full}
-Source99:   qmlsaver-xscreensaverhack.conf
-Patch0:     qmlsaver-0.1-1.fc16.patch
+Summary:        Screensaver with modules written in Qt4/QML
+Summary(ru):    Хранитель экрана с модулями написанными на Qt4/QML
+Name:           qmlsaver
+Group:          Amusements/Graphics
+URL:            https://github.com/proDOOMman/qmlsaver
+Version:        %{realver}
+Release:        2%{?dist}
+License:        GPLv2
+Source:         https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit_full}
+Source99:       qmlsaver-xscreensaverhack.conf
+Patch0:         qmlsaver-0.1-1.fc16.patch
+
+BuildRequires:  qt-devel
 
 %description
 The qmlsaver package contains digital clock screensaver for Gnome/KDE 
@@ -30,7 +32,7 @@ Qmlsaver may be used as module for xscreensaver.
 Может быть использован как модуль для xscreensaver.
 
 %prep
-%setup -q -n proDOOMman-%{name}-%{gitcommit_full}
+%setup -q -n proDOOMman-%{name}-%{gitcommit}
 %patch0 -p1 -b .fc16
 cp %{SOURCE99} .
 
