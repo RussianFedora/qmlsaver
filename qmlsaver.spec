@@ -15,7 +15,7 @@ Version:    %{realver}
 Release:    2%{?dist}
 License:    GPLv2
 Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit_full}
-Source99:   qmlsaver-xcreensaverhack.conf
+Source99:   qmlsaver-xscreensaverhack.conf
 Patch0:     qmlsaver-0.1-1.fc16.patch
 
 %description
