@@ -28,7 +28,7 @@ Qmlsaver may be used as module for xscreensaver.
 
 %description -l ru
 Этот RPM qmlsaver содержит в себе хранитель экрана типа цифровые часы 
-для Gnome/KDE написаный на Qt4/QML.
+для Gnome/KDE написанный на Qt4/QML.
 Может быть использован как модуль для xscreensaver.
 
 %prep
@@ -41,7 +41,6 @@ qmake-qt4
 make %{?_smp_mflags}
 
 %install
-rm -rf ${RPM_BUILD_ROOT}
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/qmlsaver/qmls/segment-clock/content
 cp -r qmls/segment-clock/* ${RPM_BUILD_ROOT}%{_datadir}/qmlsaver/qmls/segment-clock/
 mkdir -p ${RPM_BUILD_ROOT}%{_datadir}/applications/screensavers/
@@ -60,8 +59,6 @@ if [ -f %{_sbindir}/update-xscreensaver-hacks ]; then
 fi
 
 %postun
-#rm -rf ${RPM_BUILD_ROOT}%{_datadir}/xscreensaver/hacks.conf.d/qmlsaver-xscreensaverhack.conf
-
 if [ -f %{_sbindir}/update-xscreensaver-hacks ]; then
     %{_sbindir}/update-xscreensaver-hacks
 fi
