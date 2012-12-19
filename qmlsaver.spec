@@ -1,5 +1,6 @@
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %global gitcommit a665e9b
+%global gitcommit_full a665e9b3fab50b7c740f9d6b4632d1f182f6b293
 %global date 20100905
 %global realver 0.1
 #https://github.com/proDOOMman/qmlsaver/blob/master/debian/changelog
@@ -13,7 +14,7 @@ URL:        https://github.com/proDOOMman/qmlsaver
 Version:    %{realver}
 Release:    2%{?dist}
 License:    GPLv2
-Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit}
+Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit_full}
 Source99:   qmlsaver-xcreensaverhack.conf
 Patch0:     qmlsaver-0.1-1.fc16.patch
 
@@ -29,7 +30,7 @@ Qmlsaver may be used as module for xscreensaver.
 Может быть использован как модуль для xscreensaver.
 
 %prep
-%setup -q -n proDOOMman-%{name}-%{gitcommit}
+%setup -q -n proDOOMman-%{name}-%{gitcommit_full}
 %patch0 -p1 -b .fc16
 cp %{SOURCE99} .
 
