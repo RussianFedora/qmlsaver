@@ -11,11 +11,10 @@ Name:       qmlsaver
 Group:      Amusements/Graphics
 URL:        https://github.com/proDOOMman/qmlsaver
 Version:    %{realver}
-Release:    1%{?dist}.R
+Release:    2%{?dist}
 License:    GPLv2
 Source:     https://github.com/proDOOMman/qmlsaver/tarball/%{gitcommit}
 Source99:   qmlsaver-xcreensaverhack.conf
-Source100:  README.RFRemix
 Patch0:     qmlsaver-0.1-1.fc16.patch
 
 %description
@@ -37,7 +36,6 @@ cp %{SOURCE99} .
 %build
 qmake-qt4
 make %{?_smp_mflags}
-cp %{SOURCE100} .
 
 %install
 rm -rf ${RPM_BUILD_ROOT}
@@ -67,17 +65,18 @@ fi
 
 
 %files
-%defattr(-,root,root)
 %dir %{_datadir}/qmlsaver
 %{_datadir}/qmlsaver/qmls/segment-clock/*
 %{_datadir}/applications/screensavers/qmlsaver*
 %{_libexecdir}/xscreensaver/qmlsaver*
 %{_datadir}/xscreensaver/config/qmlsaver*
 %{_datadir}/xscreensaver/hacks.conf.d/qmlsaver*
-%doc README.RFRemix
 
 
 %changelog
+* Wed Dec 19 2012 Vasiliy N. Glazov <vascom2@gmail.com> - 0.1-2.R
+- Clean spec
+
 * Wed Dec 31 2011 Yaroslav Cherny <pacifictype@gmail.com> - 0.1-1.R
 - Integration with xscreensaver update script
 
